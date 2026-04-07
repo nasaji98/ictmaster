@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My courses — Master Of ICT</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-brand-row">
+          <a class="logo" href="index.html">Master<span>Of ICT</span></a>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="header-collapsible"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+        <div class="header-collapsible" id="header-collapsible">
+          <nav aria-label="Main">
+            <ul class="nav-links">
+              <li><a href="index.html" data-nav>Home</a></li>
+              <li><a href="courses.html" data-nav>Courses</a></li>
+              <li><a href="dashboard.html" data-nav>My courses</a></li>
+              <li><a href="admin.html" data-nav>Admin</a></li>
+            </ul>
+          </nav>
+          <div class="nav-actions">
+            <span class="badge" data-session-email hidden title=""></span>
+            <a class="btn btn-secondary btn-sm" href="login.html" data-show-guest
+              >Sign in</a
+            >
+            <a class="btn btn-primary btn-sm" href="courses.html">Courses</a>
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm"
+              data-show-user
+              data-action-logout
+              hidden
+            >
+              Log out
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1 class="page-title">My courses</h1>
+      <p class="page-intro">
+        Packs you bought (demo) are listed here. Open the link for videos or
+        notes you added in Admin.
+      </p>
+      <div id="enrollment-list" class="admin-panel"></div>
+    </main>
+
+    <footer class="site-footer">
+      Need more? <a href="courses.html">View all courses</a>.
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/courses.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/nav.js"></script>
+    <script>
+      (function () {
+        function escapeHtml(s) {
+          var d = document.createElement("div");
+          d.textContent = s;
+          return d.innerHTML;
+        }
+
+        function escapeAttr(s) {
+          return String(s)
+            .replace(/&/g, "&amp;")
+            .replace(/"/g, "&quot;")
+            .replace(/</g, "&lt;");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+          var box = document.getElementById("enrollment-list");
+          var user = ICTAuth.getCurrentUser();
+          if (!user) {
+            box.innerHTML =
+              '<p class="empty-state">Please <a href="login.html?next=dashboard.html">sign in</a> to see your courses.</p>';
+            return;
+          }
+          var enr = ICTStorage.getEnrollments().filter(function (r) {
+            return r.userId === user.id;
+          });
+          if (!enr.length) {
+            box.innerHTML =
+              '<p class="empty-state">No packs yet. <a href="courses.html">Buy a course</a> (demo).</p>';
+            return;
+          }
+          var html = "";
+          enr.forEach(function (row) {
+            var c = ICTCourses.getCourseById(row.courseId);
+            if (!c) return;
+            var link = c.videoUrlOrNotes
+              ? '<a class="btn btn-primary btn-sm" href="' +
+                escapeAttr(c.videoUrlOrNotes) +
+                '" target="_blank" rel="noopener">Open link</a>'
+              : "";
+            html +=
+              '<div class="enrollment-row">' +
+              "<div><strong>" +
+              escapeHtml(c.title) +
+              "</strong><br /><span style=\"color:var(--text-muted);font-size:0.875rem\">" +
+              escapeHtml(
+                new Date(row.purchasedAt).toLocaleString(undefined, {
+                  dateStyle: "medium",
+                })
+              ) +
+              "</span></div>" +
+              '<div style="flex-shrink:0">' +
+              link +
+              "</div></div>";
+          });
+          box.innerHTML = html || '<p class="empty-state">No courses found.</p>';
+        });
+      })();
+    </script>
+  </body>
+</html>

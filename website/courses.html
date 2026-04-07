@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Courses — Master Of ICT (LKR)</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-brand-row">
+          <a class="logo" href="index.html">Master<span>Of ICT</span></a>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="header-collapsible"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+        <div class="header-collapsible" id="header-collapsible">
+          <nav aria-label="Main">
+            <ul class="nav-links">
+              <li><a href="index.html" data-nav>Home</a></li>
+              <li><a href="courses.html" data-nav>Courses</a></li>
+              <li><a href="dashboard.html" data-nav>My courses</a></li>
+              <li><a href="admin.html" data-nav>Admin</a></li>
+            </ul>
+          </nav>
+          <div class="nav-actions">
+            <span class="badge" data-session-email hidden title=""></span>
+            <a class="btn btn-secondary btn-sm" href="login.html" data-show-guest
+              >Sign in</a
+            >
+            <a class="btn btn-primary btn-sm" href="register.html" data-show-guest
+              >Register</a
+            >
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm"
+              data-show-user
+              data-action-logout
+              hidden
+            >
+              Log out
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1 class="page-title">Courses</h1>
+      <p class="page-intro">
+        Prices are in <strong>LKR</strong>. Sign in, then tap <strong>Buy</strong>
+        to add a pack to “My courses” (demo only).
+      </p>
+      <div id="course-grid" class="card-grid"></div>
+    </main>
+
+    <footer class="site-footer">
+      Demo: no real payment. Data saved only in this browser.
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/courses.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/catalog.js"></script>
+    <script src="js/nav.js"></script>
+  </body>
+</html>

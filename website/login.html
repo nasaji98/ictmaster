@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sign in — Master Of ICT</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-brand-row">
+          <a class="logo" href="index.html">Master<span>Of ICT</span></a>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="header-collapsible"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+        <div class="header-collapsible" id="header-collapsible">
+          <nav aria-label="Main">
+            <ul class="nav-links">
+              <li><a href="index.html" data-nav>Home</a></li>
+              <li><a href="courses.html" data-nav>Courses</a></li>
+              <li><a href="dashboard.html" data-nav>My courses</a></li>
+              <li><a href="admin.html" data-nav>Admin</a></li>
+            </ul>
+          </nav>
+          <div class="nav-actions">
+            <a class="btn btn-primary btn-sm" href="register.html">Register</a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <h1 class="page-title" style="text-align: center">Sign in</h1>
+      <div class="form-panel">
+        <p id="form-error" class="form-error" hidden></p>
+        <form id="login-form" novalidate>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="username"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+            />
+          </div>
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">Sign in</button>
+            <a class="btn btn-secondary" href="register.html">New account</a>
+          </div>
+        </form>
+        <p class="demo-note">
+          After login you return to the page you opened from (e.g. Courses).
+        </p>
+      </div>
+    </main>
+
+    <footer class="site-footer">Demo only — do not use a real password.</footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/courses.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/nav.js"></script>
+    <script>
+      (function () {
+        function qp(name) {
+          return new URLSearchParams(location.search).get(name) || "";
+        }
+        document.addEventListener("DOMContentLoaded", function () {
+          var form = document.getElementById("login-form");
+          var err = document.getElementById("form-error");
+          form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            err.hidden = true;
+            var result = ICTAuth.login(
+              document.getElementById("email").value,
+              document.getElementById("password").value
+            );
+            if (!result.ok) {
+              err.textContent = result.error;
+              err.hidden = false;
+              return;
+            }
+            var next = qp("next");
+            if (next && /^[a-z0-9._-]+\.html$/i.test(next))
+              location.href = next;
+            else location.href = "dashboard.html";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
