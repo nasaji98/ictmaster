@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Master Of ICT — Grades 6–11 & A/L</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="header-brand-row">
+          <a class="logo" href="index.html">Master<span>Of ICT</span></a>
+          <button
+            type="button"
+            class="nav-toggle"
+            aria-expanded="false"
+            aria-controls="header-collapsible"
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
+        </div>
+        <div class="header-collapsible" id="header-collapsible">
+          <nav aria-label="Main">
+            <ul class="nav-links">
+              <li><a href="index.html" data-nav>Home</a></li>
+              <li><a href="courses.html" data-nav>Courses</a></li>
+              <li><a href="dashboard.html" data-nav>My courses</a></li>
+              <li><a href="admin.html" data-nav>Admin</a></li>
+            </ul>
+          </nav>
+          <div class="nav-actions">
+            <span class="badge" data-session-email hidden title=""></span>
+            <a class="btn btn-secondary btn-sm" href="login.html" data-show-guest
+              >Sign in</a
+            >
+            <a class="btn btn-primary btn-sm" href="register.html" data-show-guest
+              >Register</a
+            >
+            <button
+              type="button"
+              class="btn btn-ghost btn-sm"
+              data-show-user
+              data-action-logout
+              hidden
+            >
+              Log out
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <h1>ICT lecture videos for school & A/L</h1>
+        <p class="lead">
+          For <strong>Grade 6–11</strong> and <strong>A/L ICT</strong> students.
+          Prices in <strong>LKR</strong>. Sign in to buy a pack and watch from
+          “My courses”.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="courses.html">View courses</a>
+          <a class="btn btn-secondary" href="register.html">Register</a>
+          <a class="btn btn-ghost" href="login.html">Sign in</a>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="section-title">Sample packs</h2>
+        <div id="featured-grid" class="card-grid"></div>
+      </section>
+
+      <section class="profile-section">
+        <h2 class="section-title">About the tutor</h2>
+        <div class="profile-card">
+          <img
+            class="profile-image"
+            src="file:///C:/Users/User/.cursor/projects/c-Users-User-Desktop-website/assets/c__Users_User_AppData_Roaming_Cursor_User_workspaceStorage_899e0b41194f136a53be920316b80bf8_images_WhatsApp_Image_2026-04-06_at_11.56.46_AM-53ab4f8a-e9f8-445f-8142-7e2c62251aa4.png"
+            alt="Mohammed Naseem"
+          />
+          <div class="profile-content">
+            <h3 class="profile-name">Mohammed Naseem</h3>
+            <p>
+              I am Mohammed Naseem and I have completed my Engineering Technology degree
+              in Rajarata University of Srilanka.
+            </p>
+            <p>
+              Complete English and Innformation and Communication Degree in BCAS
+              Campus.
+            </p>
+            <p>
+              WhatsApp:
+              <a href="https://wa.me/94762581858" target="_blank" rel="noopener"
+                >+94762581858</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      Demo: data stays on this device only. “Buy” is practice (no real payment).
+    </footer>
+
+    <script src="js/storage.js"></script>
+    <script src="js/courses.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/nav.js"></script>
+  </body>
+</html>
